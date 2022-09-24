@@ -1,0 +1,86 @@
+public class Main
+{
+	public static void main(String[] args) {
+		System.out.println("Hello World");
+		
+                System.out.print("_задание_1_______>>>");
+		String hello = "Hello World";    // задание 1 -Выведите на экран текст Hello World
+                System.out.println(hello);
+        
+        int a=10;     // задание 2 - Создайте переменную, присвойте ей целочисленное значение
+        System.out.println("_задание_2_______>>>" + a);
+
+        int b=3;     // задание 3 - Создайте переменную, увеличьте её на единицу несколькими способами 
+        b=++b;
+        System.out.println("_задание_3_______");
+        System.out.println(b);
+        b=b++;
+        System.out.println(b);
+        b=b+1;
+        System.out.println(b);
+
+        
+        int c=7;     // задание 4 - Поменяйте значения переменных друг с другом двумя способами
+        int d=8;
+        System.out.println("_задание_4_______");
+        System.out.println(c + "__" +d);
+        int dop_peremennay=c;
+        c=d;
+        d=dop_peremennay;
+        System.out.println(c+ "__" +d);
+        c = c + d;
+        d = c - d;
+        c = c - d;
+        System.out.println(c+ "__" +d);
+        
+        double katet_a=3;     // задание 5 -Найдите гипотенузу треугольника с заданными катетами
+        double katet_b=4;
+        double gipotenuza_c= Math.sqrt(Math.pow(katet_a,2)+Math.pow(katet_b,2)) ;
+        System.out.println("_задание_5_______>>>" + gipotenuza_c);
+        
+        int chislo=543;       //задание 6 - Выведите его последнюю цифру числа
+        System.out.print("_задание_6_______>>>");
+        System.out.println(chislo%10);
+        System.out.print("_задание_7_______>>>");
+        System.out.println((chislo%100)/10); //задание 7 - число десятков неотрицательного целого числа
+        
+        int chislo_2=54;      //задание 8 - число десятков двузначного числа    
+        System.out.print("_задание_8_______>>>");
+        System.out.println(chislo_2/10);
+        
+        int x=9, y=111, z=21 ;
+        System.out.println("_задание_9_______");    //вывод задания 9
+        Zadanie9 (x) ;
+        
+        Zadanie9 (y) ;
+        
+        Zadanie9 (z) ;
+        
+        System.out.print("_задание_10______>>>");
+        Zadanie10 (y,z) ;
+        
+        System.out.print("_задание_11______>>>");
+        Zadanie11 (y,z) ;
+        
+        int w=10 ;
+        System.out.print("_задание_12______>>>");
+        Zadanie12 (x,y,z,w) ;
+        
+        
+    }
+        
+    static void Zadanie9 (int x) {    //задание9 - возвращает разницу между данным числом и 21
+        System.out.println(x-21) ;
+    }
+    static void Zadanie10 (int x, int y) {    //задание10 - возвращает среднее арифметическое двух переменных
+        System.out.println((x+y)/2) ;
+    } 
+    static void Zadanie11 (int x, int y) {    //задание11 - возвращает среднее геометрическое двух переменных
+        System.out.println(Math.sqrt(x*y)) ;
+    }    
+    static void Zadanie12 (int x1, int y1, int x2, int y2) {       //задание12 - возвращает расстояние между двумя точками
+
+        System.out.println(Math.sqrt(Math.pow(x1-x2,2)+Math.pow(y1-y2,2))) ;
+    }     
+        
+}
