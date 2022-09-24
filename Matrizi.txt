@@ -1,0 +1,111 @@
+public class Matrizi    // класс матрицы
+{
+	public static void main(String[] args) {
+		System.out.println("Hello World");
+		System.out.println();
+		
+		int[][] a={{1,2},{3,4}} ;     // Создание двух матриц
+		int[][] b={{5,6},{7,8}} ;
+		
+		slozenie_vichitanie(a,b);    //Вызов методов
+		System.out.println();
+		
+		umnozenie_na_chislo(a, 10);
+		System.out.println();
+		
+		umnozenie_matriz(a,b);
+		System.out.println();
+		
+		transponirovannay_matriza(a);
+		System.out.println();
+		
+		vozvedenie_v_stepen(a, 3);
+		System.out.println();
+		
+	}
+	
+	static void slozenie_vichitanie(int[][] a, int[][] b) {   //a.	Сложение и вычитание матриц
+	    int[][] c = new int[2][2] ;
+	    int[][] d = new int[2][2] ;
+	    System.out.println("__сложение__");
+		for (int i=0; i<2;i++){
+		    for (int j=0; j<2;j++){
+		        c[i][j]=a[i][j]+b[i][j] ;
+		        System.out.print(c[i][j] + " ") ;
+		    }
+		    System.out.println();
+		}
+		System.out.println("__вычитание__");
+		for (int i=0; i<2;i++){
+		    for (int j=0; j<2;j++){
+		        d[i][j]=a[i][j]+b[i][j] ;
+		        System.out.print(d[i][j] + " ") ;
+		    }
+		    System.out.println();
+		}
+	}
+	
+	static void umnozenie_na_chislo(int[][] a, int k) {   //b.	Умножение матрицы на число.
+	    int[][] c = new int[2][2] ;
+	    System.out.println("__умножение на число__");
+		for (int i=0; i<2;i++){
+		    for (int j=0; j<2;j++){
+		        c[i][j]=a[i][j]*k ;
+		        System.out.print(c[i][j] + " ") ;
+		    }
+		    System.out.println();
+		}
+	}
+	
+	static void umnozenie_matriz(int[][] a, int[][] b) {    //c.	Произведение двух матриц.
+    	System.out.println("__умножение друг на друга__");
+        int[][] c = new int[2][2] ;
+        
+		for (int i=0; i<2;i++){
+		    for (int j=0; j<2;j++){
+		        c[i][j]=a[i][0]*b[0][j]+ a[i][1]*b[1][j] ;
+		        System.out.print(c[i][j] + " ") ;
+		    }
+		    System.out.println();
+		}
+	}
+	
+	static void transponirovannay_matriza(int[][] a) {       //d.	Транспонированная матрица.
+    	System.out.println("__Транспонирование__");
+        int[][] c = new int[2][2] ;
+        
+		for (int i=0; i<2;i++){
+		    for (int j=0; j<2;j++){
+		        c[i][j]=a[j][i] ;
+		        System.out.print(c[i][j] + " ") ;
+		    }
+		    System.out.println();
+		}
+	}
+	
+	static void vozvedenie_v_stepen(int[][] a, int stepen) {        //e.	Возведение матрицы в степень.
+    	System.out.println("__Возведение степень__");
+        int[][] c = new int[2][2] ;
+        int[][] d = new int[2][2] ;
+        for (int i=0; i<2;i++){
+		    for (int j=0; j<2;j++){
+		            c[i][j]=a[i][0]*a[0][j]+ a[i][1]*a[1][j] ;
+		    }
+        }
+		if (stepen>2) {
+		    for (int st=stepen-2; st>0; st--){
+		        for (int i=0; i<2;i++){
+		            for (int j=0; j<2;j++){
+		                //System.out.print("-"+c[0][j] + "-"+ c[1][j]+"/") ;
+		                d[i][j]=a[i][0]*c[0][j]+ a[i][1]*c[1][j] ;
+		                System.out.print(d[i][j] + " ") ;
+		            }
+		            System.out.println();
+		        }
+		        c=d; 
+		    }
+	    }
+		
+	}
+
+}
