@@ -1,0 +1,88 @@
+import java.util.Stack;
+
+class New_Builder{     //класс-обёртка для StringBuilder - новая фуекция undo()
+    
+    public StringBuilder strBuilder;      //создаём основной StringBuilder
+    public StringBuilder ss;              //дополнительный - для обратных действий
+    public Stack Otkat = new Stack();     //создаём стек для хранения обратных действий
+    
+    
+    public New_Builder(String str) {     
+        strBuilder = new StringBuilder(str);    //объявляем основной StringBuilder - strBuilder
+        System.out.println(strBuilder);
+    }
+
+    
+    public New_Builder reverse() {   //метод reverse с откатом 
+        
+        strBuilder.reverse();
+        System.out.println(strBuilder);
+        ss = new StringBuilder(strBuilder);
+        Otkat.push(ss.reverse());   //записываем обратное действие
+        return this;
+    }
+
+
+    public New_Builder append(String s) {    //метод append с откатом
+        
+        strBuilder.append(s);
+        System.out.println(strBuilder);
+        ss = new StringBuilder(strBuilder);
+        Otkat.push(ss.delete(ss.length()-s.length(), ss.length()));
+        return this;
+    }
+
+    public New_Builder delete(int nach, int kon) {   //метод delete с откатом
+        
+        String udolyemoe = strBuilder.substring(nach, kon);
+        strBuilder.delete(nach, kon);
+        System.out.println(strBuilder);
+        ss = new StringBuilder(strBuilder);
+        Otkat.push(ss.insert(nach, udolyemoe));
+        return this;
+    }
+
+
+    public New_Builder replace(int nach, int kon, String s) {    //метод replace с откатом
+        
+        String udolyemoe = strBuilder.substring(nach, kon);
+        strBuilder.replace(nach, kon, s);
+        System.out.println(strBuilder);
+        ss = new StringBuilder(strBuilder);
+        Otkat.push(ss.replace(nach, kon, udolyemoe));
+        return this;
+    }
+
+
+    public New_Builder insert(int index, String s) {   //метод insert с откатом
+        
+        strBuilder.insert(index, s);
+        System.out.println(strBuilder);
+        ss = new StringBuilder(strBuilder);
+        Otkat.push(ss.delete(index, index+ s.length()));
+        return this;
+    }
+
+
+    public New_Builder undo(){    //достаём из стека наши действия - откат
+        if (Otkat!=null) {
+            System.out.println(Otkat.pop()) ;
+        }
+        
+        return this;
+    }
+}
+
+
+public class Main {
+    public static void main(String[] args) {
+        New_Builder str_New_builder = new New_Builder("jjj-jjj000");    //создаём объект класса-обёртки
+        str_New_builder.reverse();
+        str_New_builder.insert(4,"H");
+        str_New_builder.append("~uuu~");
+        str_New_builder.undo();
+        str_New_builder.undo();
+        str_New_builder.delete(3,6);
+        str_New_builder.replace(2,5,"eee");
+    }
+}
