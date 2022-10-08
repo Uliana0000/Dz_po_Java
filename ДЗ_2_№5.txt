@@ -1,0 +1,30 @@
+import java.util.Scanner;
+import java.util.HashMap;
+
+public class Main {
+    public static void main(String[] args) {
+        String s = "hbu иорг иорг ршu оргшрш рррр hbu гщщщ рррр иорг орнпк";  //создаём строку для словаря
+        String[] slova = s.split("\\s+");       //делаем из неё массив
+        HashMap<String, Integer> Slovar = new HashMap<>();     //создаём словарь
+        for (String i : slova){      //бежим по элементам строки - считаем сколько раз встречаем слово
+            int k=0;  //счётчик русских букв в слове
+            for(int j = 0; j < i.length(); j++){    //проверяем русское ли слово
+                if(i.charAt(j) >= 'а' && i.charAt(j) <= 'я'){
+                    k++;
+                }
+            }
+            if (k==i.length()){     //если слово целиком из русских букв - добавляем его
+                if (!Slovar.containsKey(i)){   //если слова такого в словаре ещё нет - добавляем
+                        Slovar.put(i, 1);
+                }
+                else{
+                        Slovar.put(i, Slovar.get(i) + 1);   
+                }
+            }
+        }
+        
+        for (String i : Slovar.keySet()){       //красивый вывод словаря
+            System.out.println(i + " = " + Slovar.get(i));
+        }
+    }
+}
