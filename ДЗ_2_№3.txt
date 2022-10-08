@@ -1,0 +1,23 @@
+import java.util.HashSet;
+import java.util.List;
+import java.util.ArrayList;
+
+public class Main{
+
+    public static void main(String[] args) {
+        String[] a = {"Меркурий","Венера","Земля","Меркурий","Меркурий","Марс","Юпитер","Земля","Сатурн","Уран","Нептун","Уран"}; // массив строк
+        ArrayList<String> listA = new ArrayList<>(); //создаём пустой список
+        for(String el:a){ //заполняем его
+            listA.add(el);
+        }
+        System.out.println(listA);
+        Ochistka(listA);
+    }
+
+    static void Ochistka(ArrayList listA) { //убирает дубликаты
+        HashSet new_listA = new HashSet(listA); //создаём хеш-таблицу для элементов listA - в ней останутся только уникальные элементы нашего списка
+        listA.clear(); //очищаем наш список
+        listA.addAll(new_listA); //вставляем элементы из хеш-таблицы
+        System.out.println(new_listA);
+    }
+}

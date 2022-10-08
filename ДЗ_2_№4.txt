@@ -1,0 +1,52 @@
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Stack;
+
+
+public class Main {
+    public Stack listi = new Stack(); 
+    
+    public static void main(String[] args) {
+        ArrayList<Double> Arr = new ArrayList<>();       //создаём ArrayList и LinkedList
+        LinkedList<Double> Lin = new LinkedList<>();
+        Zapolnenie(Arr,Lin);
+        Linked_VS_Array(Arr, Lin);
+    }
+    
+    static void Zapolnenie(ArrayList Arr, LinkedList Lin) {
+        int Dobavka = 1000000;
+        for (int i = 0; i < Dobavka; i++) {            //заполняем ArrayList и LinkedList числами от 0 до 10 
+            Arr.add((int) (Math.random())*10);     
+            Lin.add((int) (Math.random())*10);
+        }
+    }
+    
+    static void Linked_VS_Array(ArrayList Arr, LinkedList Lin) {
+        int Dobavka = 1000000;
+        int Viborka = 100000;
+        long start = System.currentTimeMillis();            //начальное время для ArrayList
+        for (int i = 0; i < Viborka; i++) {
+            Arr.get((int) (Math.random() * (Dobavka - 1)));
+        }
+        long s=System.currentTimeMillis() - start;          //время за которое выбрались элементы из ArrayList 
+        System.out.println("Время для ArrayList : " + s );
+
+        long startt = System.currentTimeMillis();            //начальное время для LinkedList
+        for (int i = 0; i < Viborka; i++) {
+            Lin.get((int) (Math.random() * (Dobavka - 1)));
+        }
+        long ss=System.currentTimeMillis() - startt;          //время за которое выбрались элементы из LinkedList 
+        System.out.println("Время для LinkedList : " + ss);
+        System.out.println();
+        
+        if (s<ss){                                            //сравниваем кто быстрее отбирает
+            System.out.println("ArrayList быстрее!");
+        }
+        else if (ss<s){
+            System.out.println("LinkedList быстрее!");
+        }
+        else {
+            System.out.println("Никто не быстрее (0.0)");
+        }
+    }
+}
