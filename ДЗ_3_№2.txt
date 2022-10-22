@@ -1,0 +1,107 @@
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+
+public class Main {
+    
+    public static List<Employees> Spisok = new ArrayList<>();    //список работников
+
+    public static void main(String[] args) {
+        createEmplyeers();
+        sortM(Spisok);
+    }
+
+    public static void createEmplyeers() {  
+        System.out.println("Сотрудники___________________________________________________"); 
+        Spisok.add(new RabotnikiMes("Григорий", "Лепнев", "110005", 80000));           // создаем сотрудников
+        Spisok.add(new RabotnikiMes("Любовь", "Ровкова", "160011", 55000));
+        Spisok.add(new RabotnikiMes("Дмитрий", "Петров", "110023", 55000));
+        Spisok.add(new RabotnikiPoChas("Сергей", "Дьяконов", "110041", 200));
+        Spisok.add(new RabotnikiPoChas("Алексей", "Иванов", "130010",1100));
+        Spisok.add(new RabotnikiPoChas("Дмитрий", "Шелег", "110035",290));
+        Spisok.add(new RabotnikiPoChas("Андрей", "Щербаков", "160008",1560));
+        for (int i = 0; i < Spisok.size(); i++) {
+            System.out.println(Spisok.get(i).getName() + " " + Spisok.get(i).getLastName() + " " + Spisok.get(i).getId() + " "+ " " + Spisok.get(i).getZP());
+        }
+        System.out.println("______________________________________________________________");
+        System.out.println();
+    }
+
+    public static void sortM(List<Employees> Empl) {  
+        System.out.println();
+        Empl.sort(new Comparator<Employees>() {         //сортировка работников по средней зп
+            public int compare(Employees E1, Employees E2) {
+                if (E1.getZP() == E2.getZP()) return 0;
+                else if (E1.getZP() < E2.getZP()) return 1;
+                else return -1;
+            }
+        });
+        for (int i = 0; i < Empl.size(); i++) {
+            System.out.println(Empl.get(i).getName() + " "  + Empl.get(i).getId() + " "+ " " + Empl.get(i).getZP());
+        }
+        System.out.println();
+        
+        for (int i = 0; i < 5; i++) {             //вывод имён первых пяти работников
+            System.out.println(Empl.get(i).getName());
+        }
+        System.out.println();
+        
+        for (int i = Empl.size()-3; i < Empl.size(); i++) {   //вывод идентификаторов последних трёх работников
+            System.out.println(Empl.get(i).getId());
+        }
+    }
+}
+
+class RabotnikiMes extends Employees {             //дочерний класс - работники с оплатой в месяц
+    double ZPvMounth;
+
+    public RabotnikiMes(String name, String last_name, String Id, double ZPvMounth) {
+        super(name, last_name, Id);
+        this.ZPvMounth = ZPvMounth;
+    }
+    
+    public double getZP() {      //зп за месяц
+        return ZPvMounth;
+    }
+}
+
+
+class RabotnikiPoChas extends Employees {       //дочерний класс - работники с почасовой оплатой
+    double ZPvChas;
+
+    public RabotnikiPoChas(String name, String last_name, String Id, double ZPvChas) {
+        super(name, last_name, Id);
+        this.ZPvChas = ZPvChas;
+    }
+
+    public double getZP() {   //рассчёт зп за месяц
+        return 22*8*ZPvChas;
+    }
+}
+
+abstract class Employees {    //базовый класс
+    
+    public String name;
+    public String last_name;
+    public String Id;
+
+    public Employees(String name, String last_name, String Id) {   //конструктор класса
+        this.name = name;
+        this.last_name = last_name;
+        this.Id = Id;
+    }
+
+    public String getName() {    //методы класса
+        return name;
+    }
+
+    public String getLastName() {
+        return last_name;
+    }
+
+    public String getId() {
+        return Id;
+    }
+    
+    public abstract double getZP();
+}
