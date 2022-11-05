@@ -1,0 +1,84 @@
+class Main
+{
+	enum Seasons{    //создаём перечисление для времён года
+        Зима(-20){
+            public void Information(){    //информация о времени года
+               System.out.println("Зима́ — одно из четырёх времён года, между осенью и весной. Основной признак этого времени года — устойчивая низкая температура (ниже 0 градусов по Цельсию) во многих районах Земли, на поверхность земли выпадает и ложится снег.");
+            }
+        },
+        Весна(15){
+            public void Information(){    //информация о времени года
+               System.out.println("Весна́ — одно из четырёх времён года, переходный сезон между зимой и летом.");
+            }
+        },
+        Лето(30){
+            public void getDescription() {
+                System.out.println("Жаркое время года");
+            }
+            public void Information(){    //информация о времени года
+               System.out.println("Ле́то — одно из четырёх времён года, между весной и осенью, характеризующееся наиболее высокой температурой окружающей среды. В день летнего солнцестояния дни самые длинные, а ночи самые короткие.");
+            }
+        },
+        Осень(7.6){
+            public void Information(){    //информация о времени года
+               System.out.println("Осень — одно из четырёх времён года, между летом и зимой. Осень — переходный сезон, когда заметно уменьшение светового дня, и постепенно понижается температура окружающей среды.");
+            }
+        };
+
+        private double sredTemp;  //атрибут - средняя температура
+
+        Seasons(double sredTemp) {     //конструктор
+            this.sredTemp = sredTemp;
+        }
+
+        public void getDescription() {
+            System.out.println("Холодное время года");
+        }
+        
+        public double dobavitTemperaturu(double sredTemp) {   //добавляет среднюю температуру
+            this.sredTemp = sredTemp;
+            return sredTemp;
+        }
+        public double SrednyyTemperatura() {return sredTemp;}
+
+        public void Information() {
+        }
+    }
+	
+	public static void main(String[] args) {
+		Seasons LubimoeVremyGoda = Seasons.Лето ;  //задаём любимое время года
+        	System.out.println("Любимое время года:");
+        	VivodInformatii(LubimoeVremyGoda);
+        	LubimoeSeason(LubimoeVremyGoda);    //пишет "Я люблю ..."
+        	System.out.println();
+        	System.out.println("Все времена года:");
+        	Seasons[] mas= {Seasons.Зима, Seasons.Весна, Seasons.Лето, Seasons.Осень};
+        	for (Seasons s: mas){   //выводит циклом все времена года
+            	VivodInformatii(s);
+        	}
+	}
+
+    	public static void VivodInformatii(Seasons Sezon){  //выводит информацию о времени года
+        	Sezon.Information();
+        	Sezon.getDescription();
+        	System.out.println(Sezon.SrednyyTemperatura());
+    	}
+
+
+	public static void LubimoeSeason(Seasons Sezon){
+	    switch(Sezon){
+            case Весна: 
+                System.out.println("Я люблю весну");
+                break;
+            case Лето: 
+                System.out.println("Я люблю лето");
+                break;
+            case Осень: 
+                System.out.println("Я люблю осень");
+                break;
+            case Зима: 
+                System.out.println("Я люблю зиму");
+                break;
+        }
+	}
+}

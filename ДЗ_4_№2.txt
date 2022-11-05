@@ -1,0 +1,101 @@
+public class Main
+
+{
+    public static void main(String[] args) {
+        Reader St0017 = new Reader("Синицин А.И.", 1120017, "ИКМ","30-07-2002", 8900445);    //создаем пользователей библиотекой
+        Reader St0173 = new Reader("Ровкова Т.Н.", 1120173 , "ИС", "05-11-2003", 8915678);
+        Reader[] Chitateli= {St0017, St0173};
+        St0017.takeBook(3);
+        String[] Books1 = {"Вакцины, вакцинопрофилактика", "ПОЛУЧЕНИЕ И СВОЙСТВА АНТИИДИОТИПИЧЕСКИХ МОНОКЛОНАЛЬНЫХ АНТИТЕЛ МЫШИ, РАСПОЗНАЮЩИХ ПЕРВИЧНЫЕ ПОЛИКЛОНАЛЬНЫЕ АНТИТЕЛА КРОЛИКА К ПРОИЗВОДНЫМ МОРФИНА"};  //список книг - массив
+        St0017.takeBook(Books1);
+        //создаём книги
+        Book b014566 = new Book("Разработка и изучение свойств искусственных полиэпитопных антигенов меланомы", "Боробова Е.А.");
+        Book b014777 = new Book("КНИГА О ВАКЦИНАЦИИ ДЛЯ ВСЕХ", "Институт имени Роберта Коха (RKI) Федеральный центр просвещения в области здравоохранения (BZgA)");
+        Book b009284 = new Book("ДНК- и РНК-вакцины: современное состояние, требования к качеству и особенности проведения доклинических исследований", "А.А. Горяев, М.В. Савкина, Ю.И. Обухов, В.А. Меркулов, Ю.В. Олефир");
+        Book[] Books2 = {b014566, b014777, b009284};
+        St0173.takeBook(Books2);
+        St0173.returnBook(2);
+        St0017.returnBook(Books1);
+        St0173.returnBook(Books2);
+    }
+
+}
+
+class Reader{
+
+    private String FIO;         //атрибуты класса
+    private String faculti;
+    private  int nomberBilet;
+    private String data;
+    private  int fone;
+
+    public Reader(String FIO, int nomberBilet, String faculti, String data, int fone){   //конструктор класса
+        this.FIO=FIO;
+        this.nomberBilet=nomberBilet;
+        this.faculti=faculti;
+        this.data=data;
+        this.fone=fone;
+    }
+
+    public String getFIO(){return FIO;}    //возвращает ФИО
+
+
+//взятия книг
+    public void takeBook(int kolichestvo){   //принимает количеситво книг
+        System.out.println(FIO + " взял " + String.valueOf(kolichestvo) + " книги");
+    }
+
+    public void takeBook(String[] args){     //принимает книги - переменное количество книг, т.е. список книг
+        String s1 = new String() ;
+        for(String s2 : args){
+            s1= s1 + "«"+s2 + "»"+ ", ";
+        }
+        System.out.println(FIO + " взял книги : " + s1.substring(0,s1.length()-2));
+    }
+
+    public void takeBook(Book[] args){     //принимает книги-объекты списком - переменным количеством 
+        String s = new String() ;
+        for(Book kniga: args){
+            s= s +"«"+ kniga.getName()+ "»"+ ", ";
+        }
+        System.out.println(FIO + " взял книги : " + s.substring(0,s.length()-2));
+    }
+
+//возвраты книг
+    public void returnBook(int kolvo){     //принимает количеситво книг                                           
+        System.out.println(FIO + " вернул " + String.valueOf(kolvo) + " книги");
+    }
+
+
+    public void returnBook(String[] args){      //принимает книги - переменное количество книг, т.е. список книг
+        String s1 = new String() ;
+        for(String s2 : args){
+            s1= s1 + "«"+s2 + "»"+ ", ";
+        }
+        System.out.println(FIO + " вернул книги : " + s1.substring(0,s1.length()-2));
+    }
+
+    public void returnBook(Book[] args){     //принимает книги-объекты списком - переменным количеством 
+        String s = new String() ;
+        for(Book kniga: args){
+            s= s +"«"+ kniga.getName()+ "»"+ ", ";
+        }
+        System.out.println(FIO + " вернул книги : " + s.substring(0,s.length()-2));
+    }
+
+
+}
+
+class Book{    //класс книги
+    public String name;      //атрибуты книги
+    public String autor;
+
+    public Book(String name, String autor){    //конструктор класса
+        this.name=name;
+        this.autor=autor;
+    }
+
+    public String getName(){   
+        return name;
+    }
+}
