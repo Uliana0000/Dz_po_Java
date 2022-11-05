@@ -1,0 +1,153 @@
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+
+
+public class Main
+{
+    public static List<Car> Spisok= new ArrayList<>();   //список машин
+
+    public static void main(String[] args) {
+        Ferrari Fer=new Ferrari("red","хорошая",120,70,250000,"335 S Spider Scagliettis",3);
+        Spisok.add(Fer);    //создаём машины разных марок
+        Spisok.add(new RollsRoyce("black","хорошая",110,65,220000,"Boat Tail",1));
+        Spisok.add(new MercedesBenz("black","хорошая",120,60,1200000,"300 SLR Uhlenhaut Coupe",1));
+        Garage Garage1= new Garage(6,Spisok);   //создаём гараж для машин
+        Garage1.sortPoPrice(Spisok);
+        Garage1.sortPoKolichestvu(Spisok);
+        Fer.Start();
+        Fer.Accelerate(150);
+    }
+}
+
+
+class RollsRoyce extends Car {       //дочерний класс
+    public String model;        //доп атрибуты
+    public int kolichestvo;
+    public RollsRoyce(String color, String tipKorobkiPeredach, int maxSkorost, int tekSkorost, int price, String model, int kolichestvo) {
+        super(color, tipKorobkiPeredach, maxSkorost, tekSkorost, price);
+        this.model = model;
+        this.kolichestvo=kolichestvo;
+    }
+    public String Model() {      //доп методы
+        String s = "Rolls-Royce ";
+        s=s+ model;
+        return s;
+    }
+    public int getKol(){return kolichestvo;}
+    public int getPrice(){return price;}
+}
+
+class MercedesBenz extends Car {       //дочерний класс
+    public String model;    //доп атрибуты
+    public int kolichestvo;
+    public MercedesBenz(String color, String tipKorobkiPeredach, int maxSkorost, int tekSkorost, int price, String model, int kolichestvo) {
+        super(color, tipKorobkiPeredach, maxSkorost, tekSkorost, price);
+        this.model = model;
+        this.kolichestvo=kolichestvo;
+    }
+    public String Model() {   //название машины
+        String s = "Mercedes-Benz ";
+        s=s+ model;
+        return s;
+    }
+    public int getKol(){return kolichestvo;}
+    public int getPrice(){return price;}
+}
+
+class Ferrari extends Car {       //дочерний класс
+    public String model;       //доп атрибуты
+    public int kolichestvo;
+    public Ferrari(String color, String tipKorobkiPeredach, int maxSkorost, int tekSkorost, int price, String model, int kolichestvo) {
+        super(color, tipKorobkiPeredach, maxSkorost, tekSkorost, price);
+        this.model = model;
+        this.kolichestvo=kolichestvo;
+    }
+    public String Model() {    //название машины
+        String s = "Ferrari ";
+        s=s+ model;
+        return s;
+    }
+    public int getKol(){return kolichestvo;}
+    public int getPrice(){return price;}
+}
+
+abstract class Car {    //базовый класс для машин
+
+    public String color;         //атрибуты
+    public String tipKorobkiPeredach;
+    public int maxSkorost;
+    public int tekSkorost;
+    public int price;
+
+    public Car(String color, String tipKorobkiPeredach, int maxSkorost, int tekSkorost, int price) {   //конструктор класса
+        this.color = color;
+        this.tipKorobkiPeredach = tipKorobkiPeredach;
+        this.maxSkorost = maxSkorost;
+        this.tekSkorost = tekSkorost;
+        this.price = price;
+    }
+
+    public void Start() {                   //методы класса
+        System.out.println("Старт");
+    }
+
+    public void Stop() {
+        System.out.println("Остановка");
+    }
+
+    public int Accelerate(int speed) {
+        if (speed<=maxSkorost){
+            this.tekSkorost=speed;
+            System.out.println(tekSkorost);
+        }
+        else{
+            System.out.println("Желаемая скорость выше максимальной!");
+        }
+        return tekSkorost;
+    }
+
+    public abstract int getKol();      //для сортировок
+    public abstract int getPrice();
+    public abstract String Model();
+}
+
+class Garage{       //класс гараж
+    public int maxVmestimost;
+    public static List<Car> Spisok;
+
+    public Garage(int maxVmestimost, List Spisok){     //конструктор класса
+        this.maxVmestimost=maxVmestimost;
+        this.Spisok=Spisok;
+    }
+
+    public static void sortPoKolichestvu(List<Car> Empl) {
+        System.out.println();
+        Empl.sort(new Comparator<Car>() {         //сортировка работников по средней зп
+            public int compare(Car E1, Car E2) {
+                if (E1.getKol() == E2.getKol()) return 0;
+                else if (E1.getKol() < E2.getKol()) return 1;
+                else return -1;
+            }
+        });
+        for (int i = 0; i < Empl.size(); i++) {
+            System.out.println(Empl.get(i).Model() + " "  + Empl.get(i).getKol());
+        }
+        System.out.println();
+    }
+
+    public static void sortPoPrice(List<Car> Empl) {
+        System.out.println();
+        Empl.sort(new Comparator<Car>() {         //сортировка работников по средней зп
+            public int compare(Car E1, Car E2) {
+                if (E1.getPrice() == E2.getPrice()) return 0;
+                else if (E1.getPrice() < E2.getPrice()) return 1;
+                else return -1;
+            }
+        });
+        for (int i = 0; i < Empl.size(); i++) {
+            System.out.println(Empl.get(i).Model() + " " + Empl.get(i).getPrice() + " "+ Empl.get(i).getKol());
+        }
+        System.out.println();
+    }
+}
