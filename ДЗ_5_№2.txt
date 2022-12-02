@@ -1,0 +1,62 @@
+import java.util.ArrayList;
+
+
+class JThread extends Thread {    //создаём потоки
+    
+    public ArrayList<Integer> Bufer;
+    public int size;
+      
+    JThread(String name, ArrayList Bufer, int size){   //конструктор для потока
+        super(name);
+        this.Bufer = Bufer;
+        this.size = size;
+    }
+      
+    public void run(){
+        System.out.println(Thread.currentThread().getName());  //выводит имя потока
+        if (Thread.currentThread().getName().equalsIgnoreCase("Производитель")){
+            Integer i = (int)(Math.random()*10) + 1;   //генерирует случайное количество чисел
+            for (int j=0; j<i ;j++){
+                generazia();    //заполняет числами буфер
+            } 
+            System.out.println(Bufer);
+        }
+        else{
+            Integer i = (int)(Math.random()*10) + 1;   //генерирует случайное количество чисел чтоб забрать
+            for (int j=0; j<i ;j++){
+                zabiraet();    //забирает числа из буфера
+            }
+            System.out.println(Bufer);
+        }
+    }
+    
+    public void generazia(){
+        synchronized (Bufer) { 
+            if (Bufer.size() < size) {  //если в буфере есть место, добавляет число
+                Integer x = (int)(Math.random()*100);
+                Bufer.add(x);
+                Bufer.notifyAll();
+            }
+        }
+    }
+    
+    public void zabiraet(){
+        synchronized (Bufer) {   //если буфер не пустой, удаляет число
+            if (Bufer.size() != 0) {
+                Bufer.remove(0);
+                Bufer.notifyAll();
+            }
+        }
+    }
+}
+
+
+public class Main {
+  
+    public static void main(String[] args) {
+        int size=6;     //размер буфера
+        ArrayList<Integer> Bufer= new ArrayList<>();  //буфер
+        new JThread("Производитель", Bufer, size).start();
+        new JThread("Потребитель", Bufer, size).start();
+    }
+}

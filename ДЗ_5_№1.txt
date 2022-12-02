@@ -1,0 +1,24 @@
+class JThread extends Thread {   //создаём поток
+      
+    JThread(String name){      //конструктор потока
+        super(name);
+    }
+      
+    public void run(){
+        System.out.printf("%s \n", Thread.currentThread().getName());  //печатает имя
+        try{
+            Thread.sleep(500);
+        }
+        catch(InterruptedException e){
+            System.out.println("Thread has been interrupted");
+        }
+    }
+}
+  
+public class Main {
+  
+    public static void main(String[] args) {
+        new JThread("Thread_1").start();    //поток 1
+        new JThread("Thread_2").start();    //поток 2
+    }
+}
