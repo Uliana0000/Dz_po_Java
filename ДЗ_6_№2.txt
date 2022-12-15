@@ -1,0 +1,66 @@
+import java.util.Arrays;
+
+public class Main
+{
+	public static void main(String[] args) {
+		int[] mas={1,2,3,4,6,5,7,8,9,0,11,55,8,72,15,12,7,38};   //массив чисел
+		long start1 = System.currentTimeMillis();   //время начала работы метода перебора
+		System.out.println(perebor(8,mas));
+		long s1=System.currentTimeMillis() - start1;
+		System.out.println("Время для Перебора : " + s1 );
+		
+		long start2 = System.currentTimeMillis();   //время начала работы метода Двоичного поиска
+		boolean sorted = false;    //сортировка массива (без неё метод не работает, поэтому время на сортировку включено в время работы метода)
+        int t;
+        while(!sorted) {
+            sorted = true;
+            for (int i = 0; i < mas.length - 1; i++) {
+                if (mas[i] > mas[i+1]) {
+                    t = mas[i];
+                    mas[i] = mas[i+1];
+                    mas[i+1] = t;
+                    sorted = false;
+                }
+            }
+        }
+        System.out.println(Dvoichiy(mas,0 , mas.length - 1, 8));
+        long s2=System.currentTimeMillis() - start2;     
+        System.out.println("Время для Двоичного поиска : " + s2 );
+        
+        if (s1<s2){                                            //сравниваем кто быстрее 
+            System.out.println("Перебор быстрее!");
+        }
+        else if (s2<s1){
+            System.out.println("Двоичный поиск быстрее!");
+        }
+        else {
+            System.out.println("Никто не быстрее (0.0)");
+        }
+	}	
+	
+	static String perebor(int a, int[] mas){  //перебирает элементы массива
+	    for(int i: mas){
+	        if (a==i){
+	            return "Есть";    //если заданный элемент в массиве есть
+	        }
+	    }
+	    return "Нет";     //если такого элемента нет
+    }
+    
+    static String Dvoichiy(int[] mas, int first, int last, int e) {   //метод двоичного перебора
+
+    if (last >= first) {     
+        int mid = first + (last - first) / 2;   //средний элемент
+
+        if (mas[mid] == e)    
+            return "Есть";    //если заданный элемент в массиве есть
+
+        if (mas[mid] > e)    //если средний элемент больше искомого
+            return Dvoichiy(mas, first, mid - 1, e);
+
+        return Dvoichiy(mas, mid + 1, last, e);
+    }
+    return "Нет";     //если такого элемента нет
+}
+    
+}

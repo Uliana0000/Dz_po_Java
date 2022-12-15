@@ -1,0 +1,82 @@
+class Uzel{           //узел дерева
+    int info;
+    Uzel left, right;
+
+    public Uzel(int info){
+        this.info = info;
+        this.left = null;
+        this.right = null;
+    }
+}
+
+public class Main {
+    static Uzel Derevo;
+
+    public int dobavka(int value){     //добавляем ещё 1 узел 
+        Uzel new_uzel, tekuschii;
+        new_uzel = new Uzel(value);
+        if(Derevo == null){
+            Derevo = new_uzel;
+            tekuschii = Derevo;
+        }
+        else{
+            tekuschii = Derevo;
+            while(tekuschii.left != null || tekuschii.right != null){
+                if(new_uzel.info < tekuschii.info){
+                    if(tekuschii.left != null)
+                        tekuschii = tekuschii.left;
+                    else
+                        break;
+                }
+                else{
+                    if(tekuschii.right != null)
+                        tekuschii = tekuschii.right;
+                    else
+                        break;
+                }
+            }
+            if(new_uzel.info < tekuschii.info)
+                tekuschii.left = new_uzel;       //добавляем слева
+            else
+                tekuschii.right = new_uzel;     //добавляем справа
+        }
+        return value;
+    }
+
+    public void vivod(Uzel Derevo){      //принт дерева
+        if (Derevo!= null) {
+            vivod(Derevo.left);
+            System.out.println(Derevo.info);
+            vivod(Derevo.right);
+        }
+    }
+
+    public boolean poisc(int value){    //поиск узла
+        boolean e = false;    
+        Uzel tekuschii;
+        tekuschii = Derevo;
+        while(tekuschii!= null){
+            if(tekuschii.info == value){
+                e = true;
+                break;        //если есть в дереве
+            }
+            else if(tekuschii.info > value)
+                tekuschii = tekuschii.left;      //берем узел слева
+            else
+                tekuschii = tekuschii.right;     //берем узел справа
+        }
+        System.out.println("Есть узел "+value+" в дереве? : "+e);
+        return e;
+    }
+
+
+    public static void main(String[] args) {
+
+        Main derevoo = new Main();
+        derevoo.dobavka(1);
+        derevoo.dobavka(2);
+        derevoo.dobavka(3);
+        derevoo.vivod(Derevo);
+        derevoo.poisc(2);
+    }
+}

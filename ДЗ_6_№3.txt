@@ -1,0 +1,31 @@
+import java.util.Arrays;
+
+public class Main
+{
+	public static void main(String[] args) {
+	    System.out.println("cos(x^5) + x^4 - 345.3*x - 23 = 0");
+	    System.out.println(div(0,10,0.001));
+	}	
+	
+	public static double f(double x){
+        return Math.cos(Math.pow(x,5)) + Math.pow(x,4) - 345.3*x - 23;
+    }
+    
+	public static double div(double a, double b, double e){
+        double c=(a+b)/2;
+        if (b-a <= e){
+            return c;
+        } 
+        if (f(a)*f(c) < 0){     //проверка что функция принимает значения противоположных знаков на концах отрезка
+            return div(a,c,e);
+        } 
+        else{
+            if (f(a)*f(c) > 0){   //если не принимает
+                return div(c,b,e);
+            } 
+            else{
+                return c;
+            } 
+        } 
+    }
+}

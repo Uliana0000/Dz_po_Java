@@ -1,0 +1,15 @@
+public class Main
+{
+	public static void main(String[] args) {
+		System.out.println("Hello World");
+		vivod(7,7);
+	}	
+	
+	static int vivod(int a, int n){   //рекурсией выводит числа от 1 до n
+	    System.out.println(a-n+1);
+	    if (n == 1){
+	        return 1;
+	    }
+	    return vivod(a, n - 1);
+    }
+}
