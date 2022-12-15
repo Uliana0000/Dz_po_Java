@@ -7,11 +7,11 @@ public class Main
 	    System.out.println(div(0,10,0.001));
 	}	
 	
-	public static double f(double x){
+	public static double f(double x){   //функция для данного выражения
         return Math.cos(Math.pow(x,5)) + Math.pow(x,4) - 345.3*x - 23;
     }
     
-	public static double div(double a, double b, double e){
+	public static double div(double a, double b, double e){   //метод деления отрезка пополам
         double c=(a+b)/2;
         if (b-a <= e){
             return c;
