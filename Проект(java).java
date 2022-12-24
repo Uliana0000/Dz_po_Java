@@ -1,0 +1,280 @@
+/******************************************************************************
+
+                            Online Java Compiler.
+                Code, Compile, Run and Debug java program online.
+Write your code in this editor and press "Run" button to execute it.
+
+*******************************************************************************/
+
+import java.io.IOException;
+import java.text.ParseException;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+class Zadanie {         //Создаём класс задание для планировщика
+    public int nomer;
+    public LocalDate  start_data;
+    public LocalDate finish_data;
+    public String name;
+    public String detali;
+    public Boolean vipolnenie;
+
+    public Zadanie(String name, String detali) throws ParseException {    //конструктор класса
+        this.nomer = (int)(Math.random()*100);
+        this.start_data = LocalDate.now();
+        this.name = name;
+        this.detali = detali;
+        this.vipolnenie=false;
+    }
+
+    public void Sdelano() throws ParseException {      //отмечает задание как выполненное
+        vipolnenie=true ;
+        this.finish_data=LocalDate.now();
+    }
+
+    public String Izmen_Name(String newname){     //изменяет наименование задания
+        this.name=newname;
+        return name;
+    }
+
+    public String Izmen_Det(String newdetali){    //изменяет описание задания
+        this.detali=newdetali;
+        return detali;
+    }
+}
+
+public class Main{
+
+    public static void main(String[] args) throws IOException, ParseException {
+        ArrayList<Zadanie> vseZ = new ArrayList<>();    //список всех заданий
+        ArrayList<Zadanie> NevipZ = new ArrayList<>();   //список всех невыполненных заданий
+        ArrayList<Zadanie> VipZ = new ArrayList<>();    //список всех выполненных заданий
+        Zadanie zadacha = new Zadanie("Продукты","Сходить за продуктами по списку");   //создаём несколько заданий
+        Zadanie zadachaa = new Zadanie("ДЗ","Сделать дз по java");
+        Zadanie zadachaaa = new Zadanie("ДЗ","Сделать дз по java");
+        vseZ.add(zadacha);
+        NevipZ.add(zadacha);
+        vseZ.add(zadachaa);
+        NevipZ.add(zadachaa);
+        vseZ.add(zadachaaa);
+        NevipZ.add(zadachaaa);
+        
+        Integer proekt=1;
+        while (proekt==1){    //цикл работы планировщика
+            System.out.println("Возможные действия:");
+            System.out.println("1. Создать задание");
+            System.out.println("2. Удалить задание");
+            System.out.println("3. Отредактировать задание");
+            System.out.println("4. Просмотреть список ВСЕХ заданий (на дату ВЫПОЛНЕНИЯ- 41,на дату СОЗДАНИЯ- 42)");
+            System.out.println("5. Просмотреть список ВЫПОЛНЕННЫХ заданий (на дату ВЫПОЛНЕНИЯ- 51,на дату СОЗДАНИЯ- 52)");
+            System.out.println("6. Просмотреть список НЕВЫПОЛНЕННЫХ заданий (на дату ВЫПОЛНЕНИЯ- 61,на дату СОЗДАНИЯ- 62)");
+            System.out.println("7. Просмотреть детальную информацию о задании");
+            System.out.println("8. Отметить задание как выполненное");
+            System.out.println();
+            Scanner in = new Scanner(System.in);
+            System.out.println("Укажите номер действия:");
+            Integer z = in.nextInt();
+            switch(z){      //выполнение опций в соответствии с выбором
+                case 1:
+                    String s3 = in.nextLine();
+                    System.out.println("Введите Наименование и Описание (разделитель +):");   //создание задания
+                    String s1 = in.nextLine();
+                    String s2 = s1.substring(s1.indexOf("+")+1) ;
+                    s1=s1.substring(0, s1.indexOf("+")) ;
+                    vseZ.add(new Zadanie(s1, s2));
+                    NevipZ.add(vseZ.get(vseZ.size()-1));
+                    break;
+                case 2:
+                    System.out.println("Введите номер задания к удалению:");   
+                    Integer k = in.nextInt();
+                    for(Zadanie i: vseZ){       //ищет задание в списке
+                        if (i.nomer==k){
+                            vseZ.remove(i);
+                            if (i.vipolnenie){
+                                VipZ.remove(i);        //удаление задания
+                            }
+                            else NevipZ.remove(i);
+                            break;
+                        }
+                    }
+                    break;
+                case  3:
+                    System.out.println("Введите номер задания:");
+                    k = in.nextInt();
+                    System.out.println("Редактировать: 1.Наименование 2.Описание 3.И то и то");
+                    Integer l = in.nextInt();
+                    for(Zadanie i: vseZ){
+                        if (i.nomer==k){
+                            switch(l){
+                                case 1:
+                                    s3 = in.nextLine();
+                                    System.out.println("Введите наименование:");    //изменяем наименование
+                                    s1 = in.nextLine();
+                                    i.Izmen_Name(s1);    
+                                    break;
+                                case 2:
+                                    s3 = in.nextLine();
+                                    System.out.println("Введите описание:");      //изменяет описание 
+                                    s2 = in.nextLine();
+                                    i.Izmen_Det(s2);
+                                    break;
+                                case 3:
+                                    s3 = in.nextLine();              //изменяет наименование и описание задания
+                                    System.out.println("Введите Наименование и Описание (разделитель +):");
+                                    s1 = in.nextLine();
+                                    s2 = s1.substring(s1.indexOf("+")+1) ;
+                                    s1=s1.substring(0, s1.indexOf("+")) ;
+                                    i.Izmen_Name(s1);
+                                    i.Izmen_Det(s2);
+                                    break;
+                            }
+                        }
+                    }
+                    break;
+                case 4:
+                    for(Zadanie i: vseZ){       //выводит список всех заданий
+                        System.out.println(i.nomer+ " " + i.name);
+                    }
+                    break;
+                case 41:
+                    int g = in.nextInt();      //выводит список всех заданий по дате выполнения
+                    int m = in.nextInt();      //дата вводится с клавиатуры
+                    int d = in.nextInt();
+                    LocalDate data = LocalDate.of(g, m, d);
+                    _zadania41(vseZ, data);
+                    break;
+                case 42:
+                    g = in.nextInt();      //выводит список всех заданий по дате создания
+                    m = in.nextInt();      //дата вводится с клавиатуры
+                    d = in.nextInt();
+                    data = LocalDate.of(g, m, d);
+                    _zadania42(vseZ, data);
+                    break;
+                case 5:
+                    for(Zadanie i: VipZ){       //выводит список всех выполненных заданий
+                        System.out.println(i.nomer+ " " + i.name);
+                    }
+                    break;
+                case 51:
+                    g = in.nextInt();     //выводит список всех выполненных заданий по дате выполнения
+                    m = in.nextInt();     //дата вводится с клавиатуры
+                    d = in.nextInt();
+                    data = LocalDate.of(g, m, d);
+                    _zadania51(VipZ, data);
+                case 52:
+                    g = in.nextInt();      //выводит список всех выполненных заданий по дате создания
+                    m = in.nextInt();      //дата вводится с клавиатуры
+                    d = in.nextInt();
+                    data = LocalDate.of(g, m, d);
+                    _zadania52(VipZ, data);
+                    break;
+                case 6:
+                    for(Zadanie i: NevipZ){       //выводит список всех невыполненных заданий
+                        System.out.println(i.nomer+ " " + i.name);
+                    }
+                    break;
+                case 61:
+                    g = in.nextInt();     //выводит список всех невыполненных заданий по дате выполнения
+                    m = in.nextInt();     //дата вводится с клавиатуры
+                    d = in.nextInt();
+                    data = LocalDate.of(g, m, d);
+                    _zadania61(NevipZ, data);
+                    break;
+                case 62:
+                    g = in.nextInt();      //выводит список всех невыполненных заданий по дате создания
+                    m = in.nextInt();     //дата вводится с клавиатуры
+                    d = in.nextInt();
+                    data = LocalDate.of(g, m, d);
+                    _zadania62(NevipZ, data);
+                    break;
+                case 7:
+                    System.out.println("Введите номер задания:");     //информация о задании по его номеру
+                    k = in.nextInt();
+                    info(vseZ, k);
+                    break;
+                case 8:
+                    System.out.println("Введите номер задания:");     //отметить задание как выполненное
+                    k = in.nextInt();
+                    for(Zadanie i: vseZ){
+                        if (i.nomer==k){
+                            i.Sdelano();
+                            VipZ.add(i);      //добавляет задание в список выполненных
+                            NevipZ.remove(i);      //удоляет из невыполненных
+                            break;
+                        }
+                    }
+                    break;
+            }
+            System.out.println("Продолжить работу? 1.Да 2.Нет");
+            proekt = in.nextInt();
+        }
+
+    }
+
+    public static void _zadania41(ArrayList<Zadanie> vseZ, LocalDate data){      //выводит список всех заданий по дате выполнения
+        System.out.println(data);
+        for(Zadanie i: vseZ){
+            if ((i.finish_data).equals(data)){       //сравнение дат
+                System.out.println(i.nomer+ " " + i.name);
+            }
+        }
+    }
+
+    public static void _zadania42(ArrayList<Zadanie> vseZ, LocalDate data){    //выводит список всех заданий по дате создания
+        System.out.println(data);
+        for(Zadanie i: vseZ){
+            if (i.start_data.equals(data)){
+                System.out.println(i.nomer+ " " + i.name);
+            }
+        }
+    }
+    
+    public static void _zadania51(ArrayList<Zadanie> VipZ, LocalDate data){     //выводит список всех выполненных заданий по дате выполнения
+        System.out.println(data);
+        for(Zadanie i: VipZ){
+            if (i.finish_data.equals(data)){
+                System.out.println(i.nomer+ " " + i.name);
+            }
+        }
+    }
+
+    public static void _zadania52(ArrayList<Zadanie> VipZ, LocalDate data){      //выводит список всех выполненных заданий по дате создания
+        System.out.println(data);
+        for(Zadanie i: VipZ){
+            if (i.start_data.equals(data)){
+                System.out.println(i.nomer+ " " + i.name);
+            }
+        }
+    }
+
+    public static void _zadania61(ArrayList<Zadanie> NevipZ, LocalDate data){   //выводит список всех невыполненных заданий по дате выполнения
+        System.out.println(data);
+        for(Zadanie i: NevipZ){
+            if (i.finish_data.equals(data)){
+                System.out.println(i.nomer+ " " + i.name);
+            }
+        }
+    }
+
+    public static void _zadania62(ArrayList<Zadanie> NevipZ, LocalDate data){     //выводит список всех невыполненных заданий по дате создания
+        System.out.println(data);
+        for(Zadanie i: NevipZ){
+            if (i.start_data.equals(data)){
+                System.out.println(i.nomer+ " " + i.name);
+            }
+        }
+    }
+
+    public static void info(ArrayList<Zadanie> vseZ, int nomer){     //выводит детальную информацию о задании
+        System.out.println(nomer);
+        for(Zadanie i: vseZ){
+            if (i.nomer==nomer){
+                System.out.println(i.start_data);
+                System.out.println(i.name);
+                System.out.println(i.detali);
+                System.out.println(i.finish_data);
+            }
+        }
+    }
+}
