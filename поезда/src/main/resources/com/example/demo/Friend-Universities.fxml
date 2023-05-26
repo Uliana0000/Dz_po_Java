@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.effect.Blend?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" style="-fx-background-color: #FEB05E;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.UniversityController">
+    <ImageView fitHeight="400.0" fitWidth="710.0" layoutX="-1.0" opacity="0.77" pickOnBounds="true" preserveRatio="true">
+        <image>
+            <Image url="@../../../pictures/imgUniversity.jpg" />
+        </image>
+        <effect>
+            <Blend />
+        </effect>
+    </ImageView>
+    <Button fx:id="UHightS" alignment="TOP_CENTER" layoutX="6.0" layoutY="228.0" mnemonicParsing="false" opacity="0.67" prefHeight="150.0" prefWidth="223.0" text="Высшая школа экономики" textAlignment="CENTER" wrapText="true">
+        <font>
+            <Font name="System Bold" size="26.0" />
+        </font>
+    </Button>
+   <Button fx:id="backMain" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" opacity="0.79" prefHeight="29.0" prefWidth="101.0" style="-fx-background-color: #87CEFA;" text="На главную">
+      <font>
+         <Font name="System Bold" size="14.0" />
+      </font>
+   </Button>
+    <Button fx:id="USechenov" alignment="TOP_CENTER" layoutX="238.0" layoutY="228.0" mnemonicParsing="false" opacity="0.67" prefHeight="150.0" prefWidth="223.0" text="Первый МГМУ им. И.М. Сеченова" textAlignment="CENTER" wrapText="true">
+        <font>
+            <Font name="System Bold" size="26.0" />
+        </font>
+    </Button>
+    <Button fx:id="UFinans" alignment="TOP_CENTER" layoutX="469.0" layoutY="228.0" mnemonicParsing="false" opacity="0.67" prefHeight="150.0" prefWidth="223.0" text="Финансовый университет " textAlignment="CENTER" wrapText="true">
+        <font>
+            <Font name="System Bold" size="26.0" />
+        </font>
+    </Button>
+</AnchorPane>

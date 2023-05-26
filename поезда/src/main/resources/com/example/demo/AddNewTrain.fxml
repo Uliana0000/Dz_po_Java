@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Blend?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.AddTrainController">
+    <ImageView fitHeight="432.0" fitWidth="716.0" layoutX="-16.0" layoutY="-6.0" pickOnBounds="true" preserveRatio="true">
+        <image>
+            <Image url="@../../../pictures/trains.png" />
+        </image>
+        <effect>
+            <Blend />
+        </effect>
+    </ImageView>
+    <Button fx:id="create" alignment="TOP_CENTER" layoutX="292.0" layoutY="301.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="93.0" style="-fx-background-color: #FFFFE0;" text="Создать" textAlignment="CENTER" wrapText="true">
+        <font>
+            <Font name="System Bold" size="16.0" />
+        </font>
+    </Button>
+    <Button fx:id="backHome" alignment="CENTER" layoutX="14.0" layoutY="346.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="120.0" style="-fx-background-color: #FFFFE0;" text="На главную" textAlignment="CENTER" wrapText="true">
+        <font>
+            <Font name="System Bold" size="16.0" />
+        </font>
+    </Button>
+    <Label alignment="CENTER" layoutX="170.0" layoutY="37.0" prefHeight="66.0" prefWidth="337.0" style="-fx-background-color: #FFFFE0;" text="Добавить поезд" wrapText="true">
+        <font>
+            <Font name="System Bold" size="36.0" />
+        </font>
+    </Label>
+    <TextField fx:id="trainName" layoutX="169.0" layoutY="129.0" prefHeight="36.0" prefWidth="337.0" promptText="Наименование поезда">
+        <font>
+            <Font size="15.0" />
+        </font>
+    </TextField>
+    <TextField fx:id="trainType" layoutX="170.0" layoutY="172.0" prefHeight="36.0" prefWidth="337.0" promptText="Тип поезда">
+        <font>
+            <Font size="15.0" />
+        </font>
+    </TextField>
+    <TextField fx:id="numberW" layoutX="170.0" layoutY="214.0" prefHeight="36.0" prefWidth="337.0" promptText="Количество вагонов">
+        <font>
+            <Font size="15.0" />
+        </font>
+    </TextField>
+    <TextField fx:id="seats" layoutX="170.0" layoutY="257.0" prefHeight="36.0" prefWidth="337.0" promptText="Количество мест в вагоне">
+        <font>
+            <Font size="15.0" />
+        </font>
+    </TextField>
+    <TextArea fx:id="resultOfCreate" layoutX="173.0" layoutY="346.0" prefHeight="49.0" prefWidth="337.0">
+        <font>
+            <Font size="16.0" />
+        </font>
+    </TextArea>
+</AnchorPane>

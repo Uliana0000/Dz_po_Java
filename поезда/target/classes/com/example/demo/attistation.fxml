@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" style="-fx-background-color: #0D2433;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.AttestationController">
+    <ButtonBar layoutX="135.0" layoutY="125.0" prefHeight="40.0" prefWidth="200.0" />
+    <Pane prefHeight="400.0" prefWidth="200.0" style="-fx-background-color: #D66B22;">
+        <children>
+            <Pane layoutX="-11.0" prefHeight="400.0" prefWidth="200.0" style="-fx-background-color: #FEB05E;">
+                <children>
+                    <Pane layoutX="11.0" layoutY="291.0" opacity="0.78" prefHeight="109.0" prefWidth="126.0" style="-fx-background-color: #AE3D0F;">
+                  <children>
+                     <Button fx:id="backM" layoutX="6.0" layoutY="37.0" mnemonicParsing="false" style="-fx-background-color: #AE3D0F;" text="На главную" textFill="WHITE">
+                        <font>
+                           <Font name="System Bold" size="16.0" />
+                        </font>
+                     </Button>
+                  </children></Pane>
+                    <Label alignment="TOP_CENTER" layoutX="10.0" layoutY="130.0" prefHeight="51.0" prefWidth="181.0" text="Аттестация" textAlignment="RIGHT" textFill="WHITE" wrapText="true">
+                        <font>
+                            <Font name="Mongolian Baiti" size="33.0" />
+                        </font>
+                    </Label>
+                </children>
+            </Pane>
+        </children>
+    </Pane>
+    <Label layoutX="255.0" layoutY="27.0" prefHeight="345.0" prefWidth="402.0" text="Для оценки профессионального уровня проводится квалификационный экзамен. Экзамен проходит в форме компьютерного или письменного тестирования. После успешной сдачи экзамена выдается квалификационный аттестат установленного образца.Он действителен в течение пяти лет.Выдача квалификационного аттестата в занимает от одного до двух дней." textFill="WHITE" wrapText="true">
+        <font>
+            <Font name="Mongolian Baiti" size="23.0" />
+        </font>
+    </Label>
+</AnchorPane>
