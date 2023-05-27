@@ -1,0 +1,5 @@
+Name,Type,Number_of_wagons,Seats,FreeSeats
+Best,typeOne,11,42,345
+JavaFX,java,7,32,49
+Rtx,nvidia,12,36,230
+WWW,faster,12,24,100

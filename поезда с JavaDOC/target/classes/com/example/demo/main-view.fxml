@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" style="-fx-background-color: #0D2433;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.MainController">
+    <AnchorPane layoutY="68.0" prefHeight="251.0" prefWidth="700.0" style="-fx-background-color: #A52A2A;">
+        <ImageView fitHeight="265.0" fitWidth="468.0" layoutX="116.0" pickOnBounds="true" preserveRatio="true">
+            <Image url="@../../../pictures/train.png" />
+        </ImageView>
+        <Button fx:id="WillR" layoutY="58.0" mnemonicParsing="false" prefHeight="71.0" prefWidth="115.0" style="-fx-background-color: #FFFFE0;" text="Будущие рейсы" textAlignment="CENTER" wrapText="true">
+            <font>
+                <Font name="Old English Text MT" size="20.0" />
+            </font>
+        </Button>
+      <Button fx:id="AddR" layoutY="158.0" mnemonicParsing="false" prefHeight="71.0" prefWidth="115.0" style="-fx-background-color: #FFFFE0;" text="Добавить рейс" textAlignment="CENTER" wrapText="true">
+         <font>
+            <Font name="Old English Text MT" size="20.0" />
+         </font>
+      </Button>
+      <Button fx:id="Trains" layoutX="584.0" layoutY="58.0" mnemonicParsing="false" prefHeight="71.0" prefWidth="115.0" style="-fx-background-color: #FFFFE0;" text="Список поездов" textAlignment="CENTER" wrapText="true">
+         <font>
+            <Font name="Old English Text MT" size="20.0" />
+         </font>
+      </Button>
+      <Button fx:id="AddTrain" layoutX="584.0" layoutY="158.0" mnemonicParsing="false" prefHeight="71.0" prefWidth="115.0" style="-fx-background-color: #FFFFE0;" text="Добавить поезд" textAlignment="CENTER" wrapText="true">
+         <font>
+            <Font name="Old English Text MT" size="20.0" />
+         </font>
+      </Button>
+    </AnchorPane>
+    <Label layoutX="210.0" layoutY="14.0" text="Рейсы и Поезда" textFill="#f6f6f6">
+        <font>
+            <Font name="Palatino Linotype" size="38.0" />
+        </font>
+    </Label>
+    <Button fx:id="Information" layoutX="301.0" layoutY="342.0" mnemonicParsing="false" style="-fx-background-color: #0D2433;" text="\@Uliana0000" textFill="WHITE">
+        <font>
+            <Font name="Palatino Linotype" size="14.0" />
+        </font>
+    </Button>
+</AnchorPane>
